@@ -6,11 +6,11 @@ serverPort = 12000
 clientSocket = socket(AF_INET, SOCK_DGRAM)
 
 #Recebe mensagem do usuario e envia ao destino
-message = raw_input('Digite uma frase:')
-clientSocket.sendto(message,(serverName, serverPort))
+message = input('Digite uma frase:')
+clientSocket.sendto(message.encode('ascii'),(serverName, serverPort))
 
 #Aguarda mensagem de retorno e a imprime
 modifiedMessage, serverAddress = clientSocket.recvfrom(2048)
-print("Retorno do Servidor:"+modifiedMessage)
+print("Retorno do Servidor:"+modifiedMessage.decode())
 
 clientSocket.close()
